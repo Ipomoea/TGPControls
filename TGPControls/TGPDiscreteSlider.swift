@@ -464,19 +464,13 @@ public class TGPDiscreteSlider:TGPSlider_INTERFACE_BUILDER {
             let thumbSizeForStyle = thumbSizeIncludingShadow()
             let thumbWidth = thumbSizeForStyle.width
             let thumbHeight = thumbSizeForStyle.height
-            let rectangle = CGRect(x:thumbAbscissa - (thumbWidth / 2),
-                                   y: (frame.height - thumbHeight)/2,
-                                   width: thumbWidth,
-                                   height: thumbHeight)
-
             let shadowRadius = (thumbComponentStyle == .iOS) ? iOSThumbShadowRadius : thumbShadowRadius
             let shadowOffset = (thumbComponentStyle == .iOS) ? iOSThumbShadowOffset : thumbShadowOffset
 
-            thumbLayer.frame = ((shadowRadius != 0.0)  // Ignore offset if there is no shadow
-                ? rectangle.insetBy(dx: shadowRadius + shadowOffset.width,
-                                    dy: shadowRadius + shadowOffset.height)
-                : rectangle.insetBy(dx: shadowRadius,
-                                    dy: shadowRadius))
+            thumbLayer.frame = CGRect(x:thumbAbscissa - (thumbWidth / 2),
+                                      y: (frame.height - thumbHeight)/2,
+                                      width: thumbWidth,
+                                      height: thumbHeight)
 
             switch thumbComponentStyle {
             case .rounded: // A rounded thumb is circular
